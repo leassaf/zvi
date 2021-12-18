@@ -1,0 +1,108 @@
+import { useState } from "react";
+import { Button, Container, Row, Col } from "react-bootstrap";
+
+export default function Form() {
+  const [values, setValues] = useState({
+    weeks: 20,
+    days: 0,
+    sp: "",
+  });
+
+  const handleSpInputChange = (event) => {
+    setValues({ ...values, sp: event.target.value });
+  };
+
+  const handleWeeksInputChange = (event) => {
+    setValues({ ...values, weeks: event.target.value });
+  };
+
+  const handleDaysInputChange = (event) => {
+    setValues({ ...values, days: event.target.value });
+  };
+
+  const handleCalc = () => {
+    if (values.sp < 100 || values.sp > 500) {
+      alert("skull perimeter should be in range of 100 to 500 mm");
+      return;
+    }
+    let ga = parseInt(values.weeks) + parseInt(values.days) / 7;
+    console.log("ga=", ga);
+
+    let maen_hc =
+      -69.625 +
+      10.885 * ga +
+      0.14769 * Math.pow(ga, 2) -
+      0.00405 * Math.pow(ga, 3);
+
+    const sd = 14.7; //constant
+
+    let hc_z_score =
+      Math.round(((parseFloat(values.sp) - maen_hc) / sd) * 100) / 100;
+
+    alert("HC z-score = (" + hc_z_score + ")");
+  };
+
+  return (
+    <form>
+      <p>Gestational Age</p>
+      <label>
+        weeks:
+        <select value={values.weeks} onChange={handleWeeksInputChange}>
+          <option value="20">20</option>
+          <option value="21">21</option>
+          <option value="22">22</option>
+          <option value="23">23</option>
+          <option value="24">24</option>
+          <option value="25">25</option>
+          <option value="26">26</option>
+          <option value="27">27</option>
+          <option value="28">28</option>
+          <option value="29">29</option>
+          <option value="30">30</option>
+          <option value="31">31</option>
+          <option value="32">32</option>
+          <option value="33">33</option>
+          <option value="34">34</option>
+          <option value="35">35</option>
+          <option value="36">36</option>
+          <option value="37">37</option>
+          <option value="38">38</option>
+          <option value="39">39</option>
+          <option value="40">40</option>
+          <option value="41">41</option>
+          <option value="41">42</option>
+        </select>
+      </label>
+
+      <br />
+
+      <label>
+        days:
+        <select value={values.days} onChange={handleDaysInputChange}>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+      </label>
+
+      <br />
+      <p>Head Circumference (HC)</p>
+
+      <label>
+        skull perimeter (mm):
+        <input type="number" value={values.sp} onChange={handleSpInputChange} />
+      </label>
+
+      <br />
+
+      <button type="button" onClick={handleCalc}>
+        CALC
+      </button>
+      <Button variant="primary">Primary</Button>
+    </form>
+  );
+}
