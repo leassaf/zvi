@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import img1 from "./Chrevenak/Chrevenak_hc_z_score_formula1.jpg";
 import img2 from "./Chrevenak/Chrevenak_hc_z_score_table.png";
 import "./App.css";
