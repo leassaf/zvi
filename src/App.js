@@ -30,7 +30,7 @@ function Form() {
   const [values, setValues] = useState({
     weeks: 20,
     days: 0,
-    sp: 0,
+    sp: "",
   });
 
   const handleSpInputChange = (event) => {
@@ -50,10 +50,11 @@ function Form() {
       alert("skull perimeter should be in range of 100 to 500 mm");
       return;
     }
+    let ga = parseInt(values.weeks) + parseInt(values.days) / 7;
+    console.log("ga=", ga);
 
-    const ga = values.weeks + values.days / 7;
     // var maen_hc = (-0.1754)*Math.pow(ga,2) + 18.782*ga - 131.48;
-    const maen_hc =
+    let maen_hc =
       -69.625 +
       10.885 * ga +
       0.14769 * Math.pow(ga, 2) -
@@ -61,10 +62,9 @@ function Form() {
 
     const sd = 14.7; //constant
 
-    let hc_z_score = (values.sp - maen_hc) / sd;
-
     //hc_z_score = (sp-( (-0.1754)*(week+day/7)^2 + ((18.782)*(week+day/7)) - 131.48))/((0.0027*(week+day/7)^2) - (0.2025*(week+day/7)) + 17.23);
-    hc_z_score = Math.round(hc_z_score * 100) / 100;
+    let hc_z_score =
+      Math.round(((parseFloat(values.sp) - maen_hc) / sd) * 100) / 100;
 
     alert("HC z-score = (" + hc_z_score + ")");
   };
