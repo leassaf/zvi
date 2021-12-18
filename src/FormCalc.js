@@ -66,7 +66,6 @@ export default function FormCalc() {
             <Col>
               <h5>Gestational Age</h5>
             </Col>
-            <Col></Col>
           </Row>
           <Row>
             <Col>
@@ -100,7 +99,6 @@ export default function FormCalc() {
                 <option value="41">42</option>
               </Form.Select>
             </Col>
-            <Col></Col>
           </Row>
           <Row>
             <Col>
@@ -115,7 +113,6 @@ export default function FormCalc() {
                 <option value="6">6</option>
               </Form.Select>
             </Col>
-            <Col></Col>
           </Row>
           <Row>
             <Col>
@@ -128,7 +125,6 @@ export default function FormCalc() {
                 placeholder="skull perimeter (mm)"
               />
             </Col>
-            <Col></Col>
           </Row>
           <Row>
             <Col>
@@ -136,7 +132,6 @@ export default function FormCalc() {
                 Calc HC z-score
               </Button>
             </Col>
-            <Col></Col>
           </Row>
           <Row>
             <Col>
@@ -156,7 +151,6 @@ export default function FormCalc() {
                 ></AlertMessage>
               ) : null}
             </Col>
-            <Col></Col>
           </Row>
         </Container>
       </Form>
