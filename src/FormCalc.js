@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { Button, Container, Row, Col, Form } from "react-bootstrap";
+import { Button, Container, Row, Col, Form, Alert } from "react-bootstrap";
+
+const AlertMessage = (props) => {
+  return <Alert variant={props.variant}>{props.text}</Alert>;
+};
 
 export default function FormCalc() {
   const [values, setValues] = useState({
@@ -20,11 +24,21 @@ export default function FormCalc() {
     setValues({ ...values, days: event.target.value });
   };
 
-  const handleCalc = () => {
+  // const [alertPrimaryDisplay, setAlertPrimaryDisplay] = useState(false);
+  const [alertDangerDispaly, setAlertDangerDisplay] = useState(false);
+  const [alertSuccessDisplay, setAlertSuccessDisplay] = useState(false);
+
+  const [chervenakScore, setChervenakScore] = useState(0);
+
+  const handleCalcChervenak = () => {
     if (values.sp < 100 || values.sp > 500) {
-      alert("skull perimeter should be in range of 100 to 500 mm");
+      setAlertDangerDisplay(true);
+      setAlertSuccessDisplay(false);
       return;
     }
+
+    // clear alerts messages
+    setAlertDangerDisplay(false);
     let ga = parseInt(values.weeks) + parseInt(values.days) / 7;
     console.log("ga=", ga);
 
@@ -39,7 +53,8 @@ export default function FormCalc() {
     let hc_z_score =
       Math.round(((parseFloat(values.sp) - maen_hc) / sd) * 100) / 100;
 
-    alert("HC z-score = (" + hc_z_score + ")");
+    setAlertSuccessDisplay(true);
+    setChervenakScore(hc_z_score);
   };
 
   return (
@@ -117,9 +132,29 @@ export default function FormCalc() {
           </Row>
           <Row>
             <Col>
-              <Button variant="primary" size="lg" onClick={handleCalc}>
+              <Button variant="primary" size="lg" onClick={handleCalcChervenak}>
                 Calc HC z-score
-              </Button>{" "}
+              </Button>
+            </Col>
+            <Col></Col>
+          </Row>
+          <Row>
+            <Col>
+              {/* {alertPrimaryDisplay ? (
+                <AlertMessage variant="primary" text=""></AlertMessage>
+              ) : null} */}
+              {alertDangerDispaly ? (
+                <AlertMessage
+                  variant="danger"
+                  text="Skull Perimeter should be in range of 100 to 500 mm"
+                ></AlertMessage>
+              ) : null}
+              {alertSuccessDisplay ? (
+                <AlertMessage
+                  variant="success"
+                  text={"HC z-score = (" + chervenakScore + ")"}
+                ></AlertMessage>
+              ) : null}
             </Col>
             <Col></Col>
           </Row>
