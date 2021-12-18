@@ -18,9 +18,19 @@ function App() {
 
         <br></br>
 
-        <img src={img1} className="" alt="Chrevenak_hc_z_score_formula1" />
+        <img
+          src={img1}
+          className=""
+          alt="Chrevenak_hc_z_score_formula1"
+          style={{ width: "100%" }}
+        />
         <br></br>
-        <img src={img2} className="" alt="Chrevenak_hc_z_score_table" />
+        <img
+          src={img2}
+          className=""
+          alt="Chrevenak_hc_z_score_table"
+          style={{ width: "100%" }}
+        />
       </header>
     </div>
   );
