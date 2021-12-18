@@ -1,4 +1,4 @@
-import { Container, Row, Col, Figure, Image, Button } from "react-bootstrap";
+import { Container, Row, Col, Figure, Button } from "react-bootstrap";
 import FormCalc from "./FormCalc";
 import img1 from "./Chrevenak/Chrevenak_hc_z_score_formula1.jpg";
 import img2 from "./Chrevenak/Chrevenak_hc_z_score_table.png";
