@@ -53,6 +53,7 @@ export default function NavigationBar() {
               </Nav.Link>
             </Nav.Item>
           </Nav>
+          <br />
 
           <Routes>
             <Route exact path="/" element={<Chervenak />}></Route>
