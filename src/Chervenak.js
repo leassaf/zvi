@@ -7,7 +7,7 @@ export default function Chervenak() {
   return (
     <div>
       <h1>Chervenak et al, 1984</h1>
-      <FormCalc />
+      <FormCalc type="Chervenak" />
       <Container>
         <Row>
           <Col>

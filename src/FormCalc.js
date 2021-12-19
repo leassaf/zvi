@@ -5,7 +5,7 @@ const AlertMessage = (props) => {
   return <Alert variant={props.variant}>{props.text}</Alert>;
 };
 
-export default function FormCalc() {
+export default function FormCalc(props) {
   const [values, setValues] = useState({
     weeks: 20,
     days: 0,
@@ -30,7 +30,9 @@ export default function FormCalc() {
 
   const [chervenakScore, setChervenakScore] = useState(0);
 
+  // Chervenak
   const handleCalcChervenak = () => {
+    console.log(props.type);
     if (values.sp < 100 || values.sp > 500) {
       setAlertDangerDisplay(true);
       setAlertSuccessDisplay(false);
@@ -39,19 +41,44 @@ export default function FormCalc() {
 
     // clear alerts messages
     setAlertDangerDisplay(false);
-    let ga = parseInt(values.weeks) + parseInt(values.days) / 7;
-    console.log("ga=", ga);
 
-    let maen_hc =
+    // calculations:
+    let ga = parseInt(values.weeks) + parseInt(values.days) / 7;
+
+    let mean_hc =
       -69.625 +
       10.885 * ga +
       0.14769 * Math.pow(ga, 2) -
       0.00405 * Math.pow(ga, 3);
 
-    const sd = 14.7; //constant
+    //constant
+    const sd = 14.7;
 
     let hc_z_score =
-      Math.round(((parseFloat(values.sp) - maen_hc) / sd) * 100) / 100;
+      Math.round(((parseFloat(values.sp) - mean_hc) / sd) * 100) / 100;
+
+    setAlertSuccessDisplay(true);
+    setChervenakScore(hc_z_score);
+  };
+
+  // Daniel-Spiegel
+  const handleCalcDanielSpiegel = () => {
+    console.log(props.type);
+    if (values.sp < 100 || values.sp > 500) {
+      setAlertDangerDisplay(true);
+      setAlertSuccessDisplay(false);
+      return;
+    }
+
+    // clear alerts messages
+    setAlertDangerDisplay(false);
+
+    // calculations:
+    let ga = parseInt(values.weeks) + parseInt(values.days) / 7;
+    let mean_hc = -0.1754 * Math.pow(ga, 2) + 18.782 * ga - 131.48;
+    let sd = 0.0027 * Math.pow(ga, 2) - 0.2025 * ga + 17.23;
+    let hc_z_score = (parseFloat(values.sp) - mean_hc) / sd;
+    hc_z_score = Math.round(hc_z_score * 100) / 100;
 
     setAlertSuccessDisplay(true);
     setChervenakScore(hc_z_score);
@@ -128,7 +155,15 @@ export default function FormCalc() {
           </Row>
           <Row>
             <Col>
-              <Button variant="primary" size="lg" onClick={handleCalcChervenak}>
+              <Button
+                variant="primary"
+                size="lg"
+                onClick={
+                  props.type === "Chervenak"
+                    ? handleCalcChervenak
+                    : handleCalcDanielSpiegel
+                }
+              >
                 Calc HC z-score
               </Button>
             </Col>
