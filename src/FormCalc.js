@@ -1,8 +1,15 @@
 import { useState } from "react";
-import { Button, Container, Row, Col, Form, Alert } from "react-bootstrap";
+import { Button, Row, Col, Form, Alert } from "react-bootstrap";
 
 const AlertMessage = (props) => {
-  return <Alert variant={props.variant}>{props.text}</Alert>;
+  return (
+    <Alert
+      variant={props.variant}
+      style={{ fontWeight: "bold", fontSize: "24px" }}
+    >
+      {props.text}
+    </Alert>
+  );
 };
 
 export default function FormCalc(props) {
@@ -22,6 +29,12 @@ export default function FormCalc(props) {
 
   const handleDaysInputChange = (event) => {
     setValues({ ...values, days: event.target.value });
+  };
+
+  const resetSpInputChange = (event) => {
+    setValues({ ...values, sp: "" });
+    setAlertDangerDisplay(false);
+    setAlertSuccessDisplay(false);
   };
 
   // const [alertPrimaryDisplay, setAlertPrimaryDisplay] = useState(false);
@@ -88,106 +101,115 @@ export default function FormCalc(props) {
     <div>
       <Form>
         <br />
-        <Container>
-          <Row>
-            <Col>
-              <h5>Gestational Age</h5>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Form.Label>Weeks</Form.Label>
-              <Form.Select
-                value={values.weeks}
-                onChange={handleWeeksInputChange}
-              >
-                <option value="20">20</option>
-                <option value="21">21</option>
-                <option value="22">22</option>
-                <option value="23">23</option>
-                <option value="24">24</option>
-                <option value="25">25</option>
-                <option value="26">26</option>
-                <option value="27">27</option>
-                <option value="28">28</option>
-                <option value="29">29</option>
-                <option value="30">30</option>
-                <option value="31">31</option>
-                <option value="32">32</option>
-                <option value="33">33</option>
-                <option value="34">34</option>
-                <option value="35">35</option>
-                <option value="36">36</option>
-                <option value="37">37</option>
-                <option value="38">38</option>
-                <option value="39">39</option>
-                <option value="40">40</option>
-                <option value="41">41</option>
-                <option value="41">42</option>
-              </Form.Select>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Form.Label>Days</Form.Label>
-              <Form.Select value={values.days} onChange={handleDaysInputChange}>
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-              </Form.Select>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <h5>Head Circumference (HC)</h5>
-              {/* <Form.Label>skull perimeter (mm)</Form.Label> */}
-              <Form.Control
-                type="number"
-                value={values.sp}
-                onChange={handleSpInputChange}
-                placeholder="skull perimeter (mm)"
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Button
-                variant="primary"
-                size="lg"
-                onClick={
-                  props.type === "Chervenak"
-                    ? handleCalcChervenak
-                    : handleCalcDanielSpiegel
-                }
-              >
-                Calc HC z-score
-              </Button>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              {/* {alertPrimaryDisplay ? (
+        <Row>
+          <Col>
+            <h5>Gestational Age</h5>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Form.Label>Weeks</Form.Label>
+            <Form.Select
+              size="lg"
+              value={values.weeks}
+              onChange={handleWeeksInputChange}
+            >
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+              <option value="24">24</option>
+              <option value="25">25</option>
+              <option value="26">26</option>
+              <option value="27">27</option>
+              <option value="28">28</option>
+              <option value="29">29</option>
+              <option value="30">30</option>
+              <option value="31">31</option>
+              <option value="32">32</option>
+              <option value="33">33</option>
+              <option value="34">34</option>
+              <option value="35">35</option>
+              <option value="36">36</option>
+              <option value="37">37</option>
+              <option value="38">38</option>
+              <option value="39">39</option>
+              <option value="40">40</option>
+              <option value="41">41</option>
+              <option value="41">42</option>
+            </Form.Select>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Form.Label>Days</Form.Label>
+            <Form.Select
+              size="lg"
+              value={values.days}
+              onChange={handleDaysInputChange}
+            >
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </Form.Select>
+          </Col>
+        </Row>
+        <Row>
+          <h5>Head Circumference (HC)</h5>
+          <Col xs={9}>
+            {/* <Form.Label>skull perimeter (mm)</Form.Label> */}
+            <Form.Control
+              type="number"
+              value={values.sp}
+              onChange={handleSpInputChange}
+              placeholder="skull perimeter (mm)"
+              size="lg"
+            />
+          </Col>
+          <Col>
+            <Button variant="secondary" onClick={resetSpInputChange}>
+              X
+            </Button>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Button
+              variant="primary"
+              size="lg"
+              onClick={
+                props.type === "Chervenak"
+                  ? handleCalcChervenak
+                  : handleCalcDanielSpiegel
+              }
+            >
+              Calc HC z-score
+            </Button>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            {/* {alertPrimaryDisplay ? (
                 <AlertMessage variant="primary" text=""></AlertMessage>
               ) : null} */}
-              {alertDangerDispaly ? (
-                <AlertMessage
-                  variant="danger"
-                  text="Skull Perimeter should be in range of 100 to 500 mm"
-                ></AlertMessage>
-              ) : null}
-              {alertSuccessDisplay ? (
-                <AlertMessage
-                  variant="success"
-                  text={"HC z-score = (" + chervenakScore + ")"}
-                ></AlertMessage>
-              ) : null}
-            </Col>
-          </Row>
-        </Container>
+            {alertDangerDispaly ? (
+              <AlertMessage
+                variant="danger"
+                text="Skull Perimeter should be in range of 100 to 500 mm"
+              ></AlertMessage>
+            ) : null}
+            {alertSuccessDisplay ? (
+              <AlertMessage
+                variant="success"
+                text={"HC z-score = " + chervenakScore}
+              ></AlertMessage>
+            ) : null}
+          </Col>
+        </Row>
       </Form>
     </div>
   );

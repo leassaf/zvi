@@ -1,4 +1,4 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import Header from "./Header";
 import Footer from "./Footer";
 
@@ -11,9 +11,7 @@ function App() {
     <div>
       <Container>
         <Row>
-          <Col>
-            <Header />
-          </Col>
+          <Header />
         </Row>
         <Row>
           <NavigationBar />

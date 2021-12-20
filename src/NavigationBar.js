@@ -49,7 +49,7 @@ export default function NavigationBar() {
             </Nav.Item>
             <Nav.Item>
               <Nav.Link as={Link} to={"/DanielSpiegel"}>
-                Daniel-Spiegel
+                Daniel-Spiegel et al, 2013
               </Nav.Link>
             </Nav.Item>
           </Nav>

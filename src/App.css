@@ -1,6 +1,7 @@
 .row {
   /* border: blue 1px solid; */
   margin: 5px;
+  /* border: red solid 1px; */
   /* margin-top: 15px; */
   /* padding: 10px; */
 }
@@ -8,6 +9,7 @@
 .col {
   /* border: orange 1px solid; */
   margin: 5px;
+  /* border: blue solid 1px; */
   /* margin-top: 0px;
   padding-right: 5px;
   padding-left: 5px; */
