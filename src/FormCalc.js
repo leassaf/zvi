@@ -166,12 +166,16 @@ export default function FormCalc(props) {
               type="number"
               value={values.sp}
               onChange={handleSpInputChange}
-              placeholder="skull perimeter (mm)"
               size="lg"
             />
+            <Form.Text className="text-muted">Skull Perimeter (mm)</Form.Text>
           </Col>
           <Col>
-            <Button variant="secondary" onClick={resetSpInputChange}>
+            <Button
+              variant="secondary"
+              onClick={resetSpInputChange}
+              style={{ marginTop: "5px" }}
+            >
               X
             </Button>
           </Col>
@@ -186,6 +190,7 @@ export default function FormCalc(props) {
                   ? handleCalcChervenak
                   : handleCalcDanielSpiegel
               }
+              style={{ marginTop: "5px" }}
             >
               Calc HC z-score
             </Button>
