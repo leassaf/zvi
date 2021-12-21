@@ -13,7 +13,7 @@ export default function Chervenak() {
           <Button variant="link" href={img1}>
             <Figure>
               <Figure.Image width={150} alt="Chrevenak formula" src={img1} />
-              <Figure.Caption>Chrevenak formula</Figure.Caption>
+              <Figure.Caption>Chervenak formula</Figure.Caption>
             </Figure>
           </Button>
         </Col>
@@ -23,7 +23,7 @@ export default function Chervenak() {
           <Button variant="link" href={img2}>
             <Figure>
               <Figure.Image width={150} alt="Chrevenak table" src={img2} />
-              <Figure.Caption>Chrevenak table</Figure.Caption>
+              <Figure.Caption>Chervenak table</Figure.Caption>
             </Figure>
           </Button>
         </Col>
